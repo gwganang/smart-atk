@@ -22,7 +22,7 @@
                     <tbody>
                         @forelse ($barang as $item)
                             <tr>
-                                <td>{{ $loop->iteration }}</td>
+                                <td>{{ $loop->iteration + $barang->firstItem() - 1 }}</td>
                                 <td>{{ $item->nama_barang }}</td>
                                 <td>{{ $item->stok_barang }}</td>
                                 <td>{{ $item->satuan }}</td>
@@ -50,6 +50,11 @@
                         @endforelse
                     </tbody>
                 </table>
+            </div>
+
+            <!-- Pagination -->
+            <div class="mt-4 d-flex flex-column align-items-center">
+                {{ $barang->links('vendor.pagination.custom') }}
             </div>
         </div>
     </div>

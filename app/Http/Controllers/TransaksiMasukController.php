@@ -8,15 +8,21 @@ use Illuminate\Http\Request;
 
 class TransaksiMasukController extends Controller
 {
+    /**
+     * Menampilkan daftar transaksi masuk dengan pagination.
+     */
     public function index()
     {
-        // Ambil semua data transaksi masuk dari database
-        $transaksi = TransaksiMasuk::all();
+        // Ambil data transaksi masuk dengan pagination (maksimal 10 data per halaman)
+        $transaksi = TransaksiMasuk::paginate(10);
 
         // Kirim data ke view
         return view('transaksi.masuk.index', compact('transaksi'));
     }
 
+    /**
+     * Menampilkan form tambah transaksi masuk.
+     */
     public function create()
     {
         // Ambil semua data barang dari database

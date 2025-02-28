@@ -8,15 +8,21 @@ use Illuminate\Http\Request;
 
 class TransaksiKeluarController extends Controller
 {
+    /**
+     * Menampilkan daftar transaksi keluar dengan pagination.
+     */
     public function index()
     {
-        // Ambil semua data transaksi keluar dari database
-        $transaksi = TransaksiKeluar::all();
+        // Ambil data transaksi keluar dengan pagination (maksimal 10 data per halaman)
+        $transaksi = TransaksiKeluar::paginate(10);
 
         // Kirim data ke view
         return view('transaksi.keluar.index', compact('transaksi'));
     }
 
+    /**
+     * Menampilkan form tambah transaksi keluar.
+     */
     public function create()
     {
         // Ambil semua data barang dari database

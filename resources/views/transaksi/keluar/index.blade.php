@@ -2,12 +2,12 @@
 
 @section('content')
     <div class="card shadow-sm">
-        <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center">
-            <h4 class="mb-0">Transaksi Keluar</h4>
-            <a href="{{ route('transaksi.keluar.create') }}" class="btn btn-light btn-sm"><i class="fas fa-plus"></i> Tambah
-                Transaksi</a>
+        <div class="card-header bg-primary text-white">
+            <h4 class="mb-0">Daftar Transaksi Keluar</h4>
         </div>
         <div class="card-body">
+            <a href="{{ route('transaksi.keluar.create') }}" class="btn btn-light mb-3"><i class="fas fa-plus"></i> Tambah
+                Transaksi Keluar</a>
             <div class="table-responsive">
                 <table class="table table-bordered table-hover">
                     <thead class="table-light">
@@ -24,7 +24,7 @@
                     <tbody>
                         @forelse ($transaksi as $item)
                             <tr>
-                                <td>{{ $loop->iteration }}</td>
+                                <td>{{ $loop->iteration + $transaksi->firstItem() - 1 }}</td>
                                 <td>{{ $item->tanggal }}</td>
                                 <td>{{ $item->nama_barang }}</td>
                                 <td>{{ $item->jumlah }}</td>
@@ -53,6 +53,11 @@
                         @endforelse
                     </tbody>
                 </table>
+            </div>
+
+            <!-- Pagination -->
+            <div class="mt-4">
+                {{ $transaksi->links('vendor.pagination.custom') }}
             </div>
         </div>
     </div>

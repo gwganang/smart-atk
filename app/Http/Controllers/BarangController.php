@@ -12,7 +12,10 @@ class BarangController extends Controller
      */
     public function index()
     {
-        $barang = Barang::all();
+        // Ambil data barang dengan pagination (maksimal 10 data per halaman)
+        $barang = Barang::paginate(10);
+
+        // Kirim data ke view
         return view('barang.index', compact('barang'));
     }
 
