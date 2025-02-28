@@ -71,6 +71,21 @@ class TransaksiKeluarController extends Controller
     }
 
     /**
+     * Menampilkan form edit transaksi keluar.
+     */
+    public function edit($id)
+    {
+        // Cari data transaksi keluar berdasarkan ID
+        $transaksi = TransaksiKeluar::findOrFail($id);
+
+        // Ambil semua data barang dari database
+        $barang = Barang::all();
+
+        // Kirim data transaksi dan barang ke view
+        return view('transaksi.keluar.edit', compact('transaksi', 'barang'));
+    }
+
+    /**
      * Memperbarui data transaksi keluar di database.
      */
     public function update(Request $request, $id)

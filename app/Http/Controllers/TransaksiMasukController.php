@@ -66,6 +66,21 @@ class TransaksiMasukController extends Controller
     }
 
     /**
+     * Menampilkan form edit transaksi masuk.
+     */
+    public function edit($id)
+    {
+        // Cari data transaksi masuk berdasarkan ID
+        $transaksi = TransaksiMasuk::findOrFail($id);
+
+        // Ambil semua data barang dari database
+        $barang = Barang::all();
+
+        // Kirim data transaksi dan barang ke view
+        return view('transaksi.masuk.edit', compact('transaksi', 'barang'));
+    }
+
+    /**
      * Memperbarui data transaksi masuk di database.
      */
     public function update(Request $request, $id)
