@@ -2,40 +2,70 @@
 
 @section('content')
     <div class="row">
+        <style>
+            /* Responsive Widgets */
+            @media (max-width: 768px) {
+                .col-md-3 {
+                    flex: 0 0 50%;
+                    /* 2 widget per baris di mobile */
+                    max-width: 50%;
+                }
+
+                .card-body .display-4 {
+                    font-size: 2rem;
+                    /* Ukuran font lebih kecil di mobile */
+                }
+            }
+        </style>
+
         <!-- Widget Statistik -->
-        <div class="col-md-3">
-            <div class="card bg-primary text-white shadow-sm fade-in">
-                <div class="card-body">
-                    <h5 class="card-title"><i class="fas fa-box me-2"></i>Total Barang</h5>
-                    <p class="card-text display-4">{{ $totalBarang }}</p>
+        <div class="row">
+            <div class="col-md-3">
+                <div class="card bg-primary text-white shadow-sm fade-in">
+                    <div class="card-body">
+                        <h5 class="card-title"><i class="fas fa-box me-2"></i>Total Barang</h5>
+                        <p class="card-text display-4">{{ $totalBarang }}</p>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="col-md-3">
-            <div class="card bg-success text-white shadow-sm fade-in">
-                <div class="card-body">
-                    <h5 class="card-title"><i class="fas fa-arrow-circle-down me-2"></i>Transaksi Masuk</h5>
-                    <p class="card-text display-4">{{ $totalTransaksiMasuk }}</p>
+            <div class="col-md-3">
+                <div class="card bg-success text-white shadow-sm fade-in">
+                    <div class="card-body">
+                        <h5 class="card-title"><i class="fas fa-arrow-circle-down me-2"></i>Transaksi Masuk</h5>
+                        <p class="card-text display-4">{{ $totalTransaksiMasuk }}</p>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="col-md-3">
-            <div class="card bg-danger text-white shadow-sm fade-in">
-                <div class="card-body">
-                    <h5 class="card-title"><i class="fas fa-arrow-circle-up me-2"></i>Transaksi Keluar</h5>
-                    <p class="card-text display-4">{{ $totalTransaksiKeluar }}</p>
+            <div class="col-md-3">
+                <div class="card bg-danger text-white shadow-sm fade-in">
+                    <div class="card-body">
+                        <h5 class="card-title"><i class="fas fa-arrow-circle-up me-2"></i>Transaksi Keluar</h5>
+                        <p class="card-text display-4">{{ $totalTransaksiKeluar }}</p>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="col-md-3">
-            <div class="card bg-secondary text-white shadow-sm fade-in">
-                <div class="card-body">
-                    <h5 class="card-title"><i class="fas fa-layer-group me-2"></i>Total Stok Barang</h5>
-                    <p class="card-text display-4">{{ $totalStokBarang }}</p>
+            <div class="col-md-3">
+                <div class="card bg-secondary text-white shadow-sm fade-in">
+                    <div class="card-body">
+                        <h5 class="card-title"><i class="fas fa-layer-group me-2"></i>Total Stok Barang</h5>
+                        <p class="card-text display-4">{{ $totalStokBarang }}</p>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
+
+    <style>
+        /* Responsive Table */
+        @media (max-width: 768px) {
+
+            .table th:nth-child(4),
+            .table td:nth-child(4) {
+                display: none;
+                /* Sembunyikan kolom "Satuan" di mobile */
+            }
+        }
+    </style>
 
     <!-- Barang dengan Stok Terendah -->
     <div class="mt-4 fade-in">
@@ -75,6 +105,16 @@
             </table>
         </div>
     </div>
+
+    <style>
+        /* Responsive Chart */
+        @media (max-width: 768px) {
+            canvas {
+                max-width: 100%;
+                height: auto;
+            }
+        }
+    </style>
 
     <!-- Grafik Transaksi -->
     <div class="mt-4 fade-in">

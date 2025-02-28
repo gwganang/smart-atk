@@ -60,20 +60,48 @@
             }
         }
 
-        /* Responsive Chart */
+        /* Responsive Sidebar */
         @media (max-width: 768px) {
-            canvas {
-                max-width: 100%;
+            .sidebar {
+                position: absolute;
+                z-index: 1000;
+                width: 100%;
                 height: auto;
+                background-color: #0d6efd;
+            }
+
+            .sidebar ul {
+                flex-direction: column;
+                padding: 0;
+            }
+
+            .sidebar a {
+                flex-direction: row;
+                justify-content: space-between;
+                padding: 10px 15px;
+            }
+
+            .sidebar i {
+                font-size: 1.2rem;
             }
         }
     </style>
 </head>
 
 <body>
+    <!-- Hamburger Menu untuk Mobile -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-white d-block d-lg-none">
+        <div class="container-fluid">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarMenu"
+                aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+        </div>
+    </nav>
+
     <!-- Sidebar -->
     <div class="d-flex">
-        <div class="sidebar p-3">
+        <div class="sidebar p-3 collapse d-lg-block" id="sidebarMenu">
             <!-- Logo -->
             <div class="text-center mb-4">
                 <i class="fas fa-box-open fa-2x text-white"></i>
@@ -84,7 +112,7 @@
                 <li class="nav-item">
                     <a href="{{ route('dashboard') }}"
                         class="nav-link d-flex align-items-center 
-                        {{ request()->is('/') ? 'active bg-primary text-white' : '' }}">
+                    {{ request()->is('/') ? 'active bg-primary text-white' : '' }}">
                         <i class="fas fa-tachometer-alt"></i> Dashboard
                     </a>
                 </li>
@@ -92,7 +120,7 @@
                 <li class="nav-item">
                     <a href="{{ route('barang.index') }}"
                         class="nav-link d-flex align-items-center 
-                        {{ request()->is('barang*') ? 'active bg-primary text-white' : '' }}">
+                    {{ request()->is('barang*') ? 'active bg-primary text-white' : '' }}">
                         <i class="fas fa-box"></i> Barang
                     </a>
                 </li>
@@ -100,7 +128,7 @@
                 <li class="nav-item">
                     <a href="{{ route('transaksi.masuk.index') }}"
                         class="nav-link d-flex align-items-center 
-                        {{ request()->is('transaksi/masuk*') ? 'active bg-primary text-white' : '' }}">
+                    {{ request()->is('transaksi/masuk*') ? 'active bg-primary text-white' : '' }}">
                         <i class="fas fa-arrow-down"></i> Transaksi Masuk
                     </a>
                 </li>
@@ -108,7 +136,7 @@
                 <li class="nav-item">
                     <a href="{{ route('transaksi.keluar.index') }}"
                         class="nav-link d-flex align-items-center 
-                        {{ request()->is('transaksi/keluar*') ? 'active bg-primary text-white' : '' }}">
+                    {{ request()->is('transaksi/keluar*') ? 'active bg-primary text-white' : '' }}">
                         <i class="fas fa-arrow-up"></i> Transaksi Keluar
                     </a>
                 </li>

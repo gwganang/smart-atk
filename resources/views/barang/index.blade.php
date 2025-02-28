@@ -1,6 +1,25 @@
 @extends('layouts.app')
 
 @section('content')
+    <style>
+        /* Responsive Table */
+        @media (max-width: 768px) {
+
+            .table th:nth-child(4),
+            .table td:nth-child(4) {
+                display: none;
+                /* Sembunyikan kolom "Satuan" di mobile */
+            }
+
+            .table th:nth-child(5),
+            .table td:nth-child(5) {
+                display: none;
+                /* Sembunyikan kolom "Status" di mobile */
+            }
+        }
+    </style>
+
+    <!-- Daftar Barang -->
     <div class="card shadow-sm">
         <div class="card-header bg-primary text-white">
             <h4 class="mb-0">Daftar Barang</h4>
