@@ -20,3 +20,7 @@ Route::prefix('transaksi')->group(function () {
     Route::resource('masuk', TransaksiMasukController::class)->names('transaksi.masuk');
     Route::resource('keluar', TransaksiKeluarController::class)->names('transaksi.keluar');
 });
+
+use App\Http\Controllers\DashboardController;
+
+Route::get('/', [DashboardController::class, 'index'])->name('dashboard');

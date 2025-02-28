@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SMart-ATK</title>
+    <title>{{ isset($title) ? $title . ' - SMart-ATK' : 'SMart-ATK' }}</title>
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Font Awesome Icons -->
@@ -38,31 +38,12 @@
         .sidebar a:hover {
             background-color: #0b5ed7;
             transform: translateX(5px);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
 
         .sidebar i {
             font-size: 1.2rem;
             margin-right: 10px;
-        }
-
-        .navbar-brand {
-            font-weight: bold;
-            color: #0d6efd !important;
-        }
-
-        .btn-custom {
-            background-color: #0d6efd;
-            border-color: #0d6efd;
-            transition: transform 0.2s ease-in-out;
-        }
-
-        .btn-custom:hover {
-            transform: scale(1.05);
-        }
-
-        .table-hover tbody tr:hover {
-            background-color: #f1f8ff;
-            transition: background-color 0.3s ease-in-out;
         }
 
         .fade-in {
@@ -78,6 +59,14 @@
                 opacity: 1;
             }
         }
+
+        /* Responsive Chart */
+        @media (max-width: 768px) {
+            canvas {
+                max-width: 100%;
+                height: auto;
+            }
+        }
     </style>
 </head>
 
@@ -85,30 +74,46 @@
     <!-- Sidebar -->
     <div class="d-flex">
         <div class="sidebar p-3">
-            <h4 class="text-center mb-4 text-white">Menu</h4>
+            <!-- Logo -->
+            <div class="text-center mb-4">
+                <i class="fas fa-box-open fa-2x text-white"></i>
+                <h4 class="mt-2 text-white">SMart-ATK</h4>
+            </div>
             <ul class="nav flex-column">
+                <!-- Dashboard -->
                 <li class="nav-item">
-                    <a href="{{ route('barang.index') }}" class="nav-link d-flex align-items-center">
+                    <a href="{{ route('dashboard') }}"
+                        class="nav-link d-flex align-items-center 
+                        {{ request()->is('/') ? 'active bg-primary text-white' : '' }}">
+                        <i class="fas fa-tachometer-alt"></i> Dashboard
+                    </a>
+                </li>
+                <!-- Barang -->
+                <li class="nav-item">
+                    <a href="{{ route('barang.index') }}"
+                        class="nav-link d-flex align-items-center 
+                        {{ request()->is('barang*') ? 'active bg-primary text-white' : '' }}">
                         <i class="fas fa-box"></i> Barang
                     </a>
                 </li>
+                <!-- Transaksi Masuk -->
                 <li class="nav-item">
                     <a href="{{ route('transaksi.masuk.index') }}"
                         class="nav-link d-flex align-items-center 
-                        {{ request()->is('transaksi/masuk*') ? 'bg-primary text-white' : '' }}">
+                        {{ request()->is('transaksi/masuk*') ? 'active bg-primary text-white' : '' }}">
                         <i class="fas fa-arrow-down"></i> Transaksi Masuk
                     </a>
                 </li>
+                <!-- Transaksi Keluar -->
                 <li class="nav-item">
                     <a href="{{ route('transaksi.keluar.index') }}"
                         class="nav-link d-flex align-items-center 
-                        {{ request()->is('transaksi/keluar*') ? 'bg-primary text-white' : '' }}">
+                        {{ request()->is('transaksi/keluar*') ? 'active bg-primary text-white' : '' }}">
                         <i class="fas fa-arrow-up"></i> Transaksi Keluar
                     </a>
                 </li>
             </ul>
         </div>
-
         <!-- Main Content -->
         <div class="flex-grow-1 p-4">
             <div class="container-fluid fade-in">
@@ -116,7 +121,6 @@
             </div>
         </div>
     </div>
-
     <!-- SweetAlert Notifications -->
     @if (session('success'))
         <script>
@@ -127,7 +131,6 @@
             });
         </script>
     @endif
-
     @if (session('error'))
         <script>
             Swal.fire({
@@ -137,7 +140,6 @@
             });
         </script>
     @endif
-
     <!-- Bootstrap JS and Popper.js -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 </body>
